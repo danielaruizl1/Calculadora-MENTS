@@ -78,17 +78,17 @@ public class MainActivityH extends AppCompatActivity {
 
 
         SharedPreferences historial=getSharedPreferences("Historial", Context.MODE_PRIVATE);
-        if (i>0) {
+        if (!String.valueOf(i).equals("0")) {
             String anterior = historial.getString("u".concat(String.valueOf(i - 1)), "xd");
             if (!Objects.equals(anterior, todo)){
                 SharedPreferences.Editor editor=historial.edit();
-                editor.putString("u".concat(String.valueOf(i)), todo);
+                editor.putString("u".concat(String.valueOf(i-1)), todo);
                 editor.putString("contador", String.valueOf(i+1));
                 editor.commit();
             }
         }else{
             SharedPreferences.Editor editor=historial.edit();
-            editor.putString("u".concat(String.valueOf(i)), todo);
+            editor.putString("u".concat(String.valueOf(i)), "-");
             editor.putString("contador", String.valueOf(i+1));
             editor.commit();
         }

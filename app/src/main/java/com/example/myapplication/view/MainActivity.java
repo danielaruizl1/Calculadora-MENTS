@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         mail = findViewById(R.id.repsuestaemail);
         pass = findViewById(R.id.respuestacontraseña);
         inicio = findViewById(R.id.inicio);
-        cond = mail.getText().length() > 0 && pass.getText().length() > 0;
 
         SharedPreferences historial=getSharedPreferences("Historial", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=historial.edit();

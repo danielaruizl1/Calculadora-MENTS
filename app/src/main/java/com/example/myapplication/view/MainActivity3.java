@@ -32,13 +32,13 @@ public class MainActivity3 extends AppCompatActivity {
         String mayor = "El valor es mayor que el umbral superior, \nEntonces se sugiere que vaya a cirugia";
         String medio = "El valor Se encuentra entre umbrales, \nEntonces Se deja a consideración del médico";
 
-        if (num1 < u1){
+        if (Integer.compare(num1,u1)==-1){
             textview4.setText(menor);
         }
-        else if (num1 > u2){
+        else if (Integer.compare(num1,u2)==1){
             textview4.setText(mayor);
         }
-        else{
+        else if (Integer.compare(num1,u1)==1 && Integer.compare(num1,u2)==-1){
             textview4.setText(medio);
         }
 
