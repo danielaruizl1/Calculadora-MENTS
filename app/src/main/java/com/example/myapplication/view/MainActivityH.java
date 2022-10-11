@@ -9,34 +9,51 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-
-import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class MainActivityH extends AppCompatActivity {
 
     ListView l;
-    int contador = 0;
-    String[] users = new String[5];
+    int contador;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_h);
 
-        if (contador == 0) {
-            users[0] = "";
-            users[1] = "";
-            users[2] = "";
-            users[3] = "";
-            users[4] = "";
-            cargarHistorial(contador, users);
-            contador = guardarNumPaciente(contador);
+
+        SharedPreferences historial=getSharedPreferences("Historial", Context.MODE_PRIVATE);
+        String c = historial.getString("contador", "-1");
+
+
+        if (Objects.equals(c, "-1")){
+            contador = 0;
         }
-        else {
-        cargarHistorial(contador, users);
-        contador = guardarNumPaciente(contador);
+        else{
+        contador= Integer.parseInt(c);
         }
+
+        cargarHistorial(contador);
+
+        String[] users = new String[10];
+        users[0] = historial.getString("u0", "-1");
+        users[1] = historial.getString("u1", "-1");
+        users[2] = historial.getString("u2", "-1");
+        users[3] = historial.getString("u3", "-1");
+        users[4] = historial.getString("u4", "-1");
+        users[5] = historial.getString("u5", "-1");
+        users[6] = historial.getString("u6", "-1");
+        users[7] = historial.getString("u7", "-1");
+        users[8] = historial.getString("u8", "-1");
+        users[9] = historial.getString("u9", "-1");
+
+        guardarUsuarios(contador, users);
+
+
 
 
 
@@ -48,12 +65,10 @@ public class MainActivityH extends AppCompatActivity {
             }
         });
     }
-    private void cargarHistorial(int i, String paciente[]) {
+    private void cargarHistorial(int i) {
+
         SharedPreferences usuario=getSharedPreferences
                 ("user",MODE_PRIVATE);
-
-        System.out.println(i);
-        l = findViewById(R.id.lv);
 
         String cedula = usuario.getString("cedula", "xd");
         String name = usuario.getString("nombre","xd");
@@ -62,25 +77,33 @@ public class MainActivityH extends AppCompatActivity {
                 .concat(", ").concat(score);
 
 
-        paciente[i] = todo;
+        SharedPreferences historial=getSharedPreferences("Historial", Context.MODE_PRIVATE);
+        if (i>0) {
+            String anterior = historial.getString("u".concat(String.valueOf(i - 1)), "xd");
+            if (!Objects.equals(anterior, todo)){
+                SharedPreferences.Editor editor=historial.edit();
+                editor.putString("u".concat(String.valueOf(i)), todo);
+                editor.putString("contador", String.valueOf(i+1));
+                editor.commit();
+            }
+        }else{
+            SharedPreferences.Editor editor=historial.edit();
+            editor.putString("u".concat(String.valueOf(i)), todo);
+            editor.putString("contador", String.valueOf(i+1));
+            editor.commit();
+        }
+        
+    }
+
+    private void guardarUsuarios(int i, String[] pacientes) {
 
         l = findViewById(R.id.lv);
         ArrayAdapter<String> arr;
         arr = new ArrayAdapter<String>
                 (this,
                         android.support.constraint.R.layout.support_simple_spinner_dropdown_item,
-                        paciente);
+                        pacientes);
         l.setAdapter(arr);
-    }
-
-    private int guardarNumPaciente(int c) {
-
-        SharedPreferences usuario=getSharedPreferences("num_users", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor=usuario.edit();
-
-        editor.putString("nombre", String.valueOf(c+1));
-        editor.commit();
-        return c+1;
     }
 
 }

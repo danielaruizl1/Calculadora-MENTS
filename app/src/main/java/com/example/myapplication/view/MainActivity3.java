@@ -42,5 +42,8 @@ public class MainActivity3 extends AppCompatActivity {
         editor.putString("score", textview3.getText().toString());
 
         editor.commit();
+
+
+
     }
 }
