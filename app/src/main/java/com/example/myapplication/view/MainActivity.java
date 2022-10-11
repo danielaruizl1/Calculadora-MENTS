@@ -38,8 +38,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 }
-    private void fun(){
-        inicio.setEnabled((mail.getText().length() > 0) && (pass.getText().length() > 0));
-    }
 
 }

@@ -47,9 +47,9 @@ public class MainActivityU extends AppCompatActivity {
     }
     private void guardarPreferencias() {
 
-        String nid = cedula.getText().toString();
-        SharedPreferences usuario=getSharedPreferences(nid, Context.MODE_PRIVATE);
+        SharedPreferences usuario=getSharedPreferences("user", Context.MODE_PRIVATE);
 
+        String nid = cedula.getText().toString();
         String name = nombre.getText().toString();
         String age = edad.getText().toString();
         String mail = correo.getText().toString();
@@ -67,10 +67,5 @@ public class MainActivityU extends AppCompatActivity {
         editor.putString("fecha", date);
         editor.putString("eps", n_eps);
         editor.commit();
-
-        SharedPreferences usuarios=getSharedPreferences("usuarios", Context.MODE_PRIVATE);
-        SharedPreferences.Editor us_editor=usuario.edit();
-        us_editor.putString("cedula", nid);
-        us_editor.commit();
     }
     }

@@ -1,6 +1,8 @@
 package com.example.myapplication.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,9 +25,22 @@ public class MainActivity3 extends AppCompatActivity {
         findViewById(R.id.regresar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent testIntent = new Intent(getApplicationContext(),MainActivityDP.class);
+                guardarScore();
+                Intent testIntent = new Intent(getApplicationContext(),MainActivityH.class);
                 startActivity(testIntent);
             }
         });
+    }
+    private void guardarScore() {
+
+        SharedPreferences usuario=getSharedPreferences("user", Context.MODE_PRIVATE);
+
+        TextView textview3 = findViewById(R.id.resultado);
+
+        SharedPreferences.Editor editor=usuario.edit();
+
+        editor.putString("score", textview3.getText().toString());
+
+        editor.commit();
     }
 }
