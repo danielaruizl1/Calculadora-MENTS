@@ -32,5 +32,13 @@ public class MainActivityDP extends AppCompatActivity {
                 startActivity(testIntent);
             }
         });
+
+        findViewById(R.id.button_umbrales).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent testIntent = new Intent(getApplicationContext(),MainActivity_Umbral.class);
+                startActivity(testIntent);
+            }
+        });
     }
 }

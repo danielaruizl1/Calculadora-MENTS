@@ -26,23 +26,37 @@
         android:id="@+id/Button_historial"
         style="@android:style/Widget.Button.Small"
         android:layout_width="141dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginBottom="283dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="70dp"
         android:background="#C30A0A"
         android:fontFamily="@font/robotomedium"
         android:text="Revisar historial "
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Button_usuario" />
 
     <Button
+        android:id="@+id/button_umbrales"
+        style="@android:style/Widget.Button.Small"
+        android:layout_width="141dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="-1dp"
+        android:background="#C30A0A"
+        android:fontFamily="@font/robotomedium"
+        android:text="Cambiar Umbrales"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Button_historial"
+        app:layout_constraintVertical_bias="0.334" />
+
+    <Button
         android:id="@+id/Button_usuario"
         style="@android:style/Widget.Button.Small"
         android:layout_width="141dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginTop="100dp"
         android:background="#C30A0A"
         android:fontFamily="@font/robotomedium"
@@ -50,7 +64,6 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/Button_historial"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 

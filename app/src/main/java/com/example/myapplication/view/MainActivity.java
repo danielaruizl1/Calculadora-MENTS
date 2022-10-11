@@ -44,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("u9", "-");
         editor.commit();
 
+        SharedPreferences usuario=getSharedPreferences("umbrales", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor_u=usuario.edit();
+        editor_u.putString("um1", "50");
+        editor_u.putString("um2", "110");
+        editor.commit();
+
         findViewById(R.id.inicio).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

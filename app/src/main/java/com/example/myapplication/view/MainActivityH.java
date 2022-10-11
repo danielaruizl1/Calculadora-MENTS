@@ -92,7 +92,7 @@ public class MainActivityH extends AppCompatActivity {
             editor.putString("contador", String.valueOf(i+1));
             editor.commit();
         }
-        
+
     }
 
     private void guardarUsuarios(int i, String[] pacientes) {

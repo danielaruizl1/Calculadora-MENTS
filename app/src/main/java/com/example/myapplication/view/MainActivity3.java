@@ -22,6 +22,26 @@ public class MainActivity3 extends AppCompatActivity {
         TextView textview3 = findViewById(R.id.resultado);
         textview3.setText(String.valueOf(num1));
 
+        TextView textview4 = findViewById(R.id.resultado2);
+
+        SharedPreferences umbrales=getSharedPreferences("umbrales", Context.MODE_PRIVATE);
+        int u1 = Integer.parseInt(umbrales.getString("u1", "-1"));
+        int u2 = Integer.parseInt(umbrales.getString("u2", "-1"));
+
+        String menor = "El valor es menor que el umbral inferior, \nEntonces se sugiere que no vaya a cirugia";
+        String mayor = "El valor es mayor que el umbral superior, \nEntonces se sugiere que vaya a cirugia";
+        String medio = "El valor Se encuentra entre umbrales, \nEntonces Se deja a consideración del médico";
+
+        if (num1 < u1){
+            textview4.setText(menor);
+        }
+        else if (num1 > u2){
+            textview4.setText(mayor);
+        }
+        else{
+            textview4.setText(medio);
+        }
+
         findViewById(R.id.regresar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
